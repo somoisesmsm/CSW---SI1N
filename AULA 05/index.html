@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 06</title>
+</head>
+<body>
+    <h1>Principais Formatações</h1>
+    <br>
+    <h2>Negrito / Destaque</h2>
+    <p>Nesta frase temos uma <b>parte do texto em negrito</b> usando a tag B (não semântica)</p>
+    <p>Nesta frase temos uma <strong>parte do texto em negrito</strong> usando a tag strong (semântica)</p> <br>
+    <h2>Itálico / Ênfase</h2>
+    <p>Nesta frase vamos entrar com uma palavra em <i>itálico</i> usando a tag i (não semântica)</p>
+    <p>Nesta frase vamos entrar com uma palavra em <EM>itálico</EM> usando a tag EM (com semântica)</p>
+    <br>
+    <h2>Texto Marcador</h2>
+    <p>Aqui vamos usar um texto com destaque <mark>de marcador de texto</mark> usando mark</p>
+    <p>Aqui vamos usar um texto com destaque <mark style="background-color: green;">de marcador de texto</mark> usando mark</p>
+    <br>
+    <h2>Texto grande e pequeno</h2>
+    <p>Estamos trabalhando aqui com um <big>texto grande</big> e um <small>texto pequeno</small> nesta frase</p> <br>
+    <h2>Texto deletado</h2>
+    <p>Neste parágrafo vamos trabalhar com um texto <del>que foi excluído</del> da frase de forma semântica</p>
+    <br>
+    <h2>Texto inserido</h2>
+    <p>Nessa frase vamos demonstrar como <ins>destacar um texto inserido</ins> na frase de forma semântica</p>
+    <p>Nessa frase vamos demonstrar como <u>destacar um texto inserido</u> na frase de forma não semântica</p>
+    <br>
+    <h2>Texto sobrescrito</h2>  
+    <p>Vamos demonstrar uma fórmula da equação do segundo grau ax<sup>2</sup> + bx + c =0 usando tag sup</p>
+    <br>
+    <h2>Txto subescrito</h2>
+    <p>Vamos demonstrar o texto subescrito com a fórmula da água H<sub>2</sub>O</p>
+    <br>
+    <h2>Trecho de código fonte</h2>
+    <p>Neste exemplo vou demonstrar um trecho de código</p>
+    <p>inserindo o comando document.getElementById('edtCodigo') que é um comando Java Script</p>
+    <p>Inserindo um longo código em Python</p>
+    <pre><code>
+            import numpy as np
+            import pandas as pd
+        
+            def remove_outliers(df, column, method='iqr', threshold=3):
+            """
+            Remove outliers de um DataFrame
+            :param df: DataFrame Pandas
+            :param column: Nome da coluna a ser analisada
+            :param method: Método para remoção ('iqr' ou 'zscore')
+            :param threshold: Limite para definir outliers no método Z-Score (padrão: 3 desvios padrão)
+            :return: DataFrame sem os outliers
+            """
+            if method == 'zscore':
+                from scipy import stats
+                z_scores = np.abs(stats.zscore(df[column]))
+                return df[z_scores < threshold]
+            
+            elif method == 'iqr':
+                Q1 = df[column].quantile(0.25)
+                Q3 = df[column].quantile(0.75)
+                IQR = Q3 - Q1
+                lower_bound = Q1 - 1.5 * IQR
+                upper_bound = Q3 + 1.5 * IQR
+                return df[(df[column] >= lower_bound) & (df[column] <= upper_bound)]
+            
+            else:
+                raise ValueError("Método inválido. Use 'iqr' ou 'zscore'.")
+        
+          # Exemplo de uso
+          data = {'valores': [10, 12, 15, 14, 100, 9, 11, 10, 300, 13, 14, 15]}
+          df = pd.DataFrame(data)
+          
+          # Removendo outliers
+          df_sem_outliers = remove_outliers(df, 'valores', method='iqr')
+        
+          print("Original:")
+          print(df)
+          print("\nSem outliers:")
+          print(df_sem_outliers)
+        </code></pre>
+        <br>
+        <h2>Citações (quotation) simples</h2>
+        <p>Segundo <cite>Steve Jobs</cite> <q>A tecnologia move o mundo</q></p>
+        <br>
+        <h2>Citações completas (livros)</h2>
+        <p>Segundo <cite>Sandra Kussunoki</cite> no seu livro A Dança e o Ventre:</p>
+        <p><blockquote>Dados existentes sobre intervenções nos corpos contemporâneos visando à obtenção de um <br>corpo mais próximo do padrão estético tais como lipoaspiração, prótese de silicone, entre outras,<br> comprovam essa busca obsessiva pelo ideal de perfeição, que é baseado principalmente na magreza</blockquote></p>
+        <br>
+        <h2>Abreviações</h2>
+        <p>Estamos estudando <abbr title="Hypertext Markup Language">HTML</abbr> e <abbr title="Cascading Style Sheet">CSS</abbr></p>
+        <br>
+        <h2>Texto invertido</h2>
+        <p>Estou estudando HTML</p>
+        <p><bdo dir="rtl">Estou estudando HTML</bdo>
+</body>
+</html>
